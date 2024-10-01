@@ -22,7 +22,10 @@
  * Define Global Variables
  * 
 */
-
+// Navigation sidebar 
+// 
+// em size
+const emSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
 
 /**
  * End Global Variables
@@ -37,9 +40,29 @@
  * Begin Main Functions
  * 
 */
+document.addEventListener('DOMContentLoaded', function() {
+    // menu button
+    document.getElementById('menu-button').addEventListener('click', function() {
+        showHideNavBar();
+    });
+
+    // section clicking
+    
+});
 
 // build the nav
 
+// Show and hide navigation side bar
+function showHideNavBar() {
+    console.log("inside showHideNavBar");
+    const navBars = document.getElementsByClassName('navbar__menu');
+    const narBar = navBars[0];
+    if(window.innerWidth <= 35*emSize) {
+        narBar.classList.toggle('visible');
+    } else {
+        narBar.classList.toggle('hidden');
+    }
+}
 
 // Add class 'active' to section when near top of viewport
 
@@ -56,6 +79,15 @@
 // Build menu 
 
 // Scroll to section on link click
+function scrollToSection(sectionId) {
+    console.log("called scrollToSection sectionId = ", + sectionId);
+    const target = document.getElementById(sectionId);
+    if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.error('Element not found: ' + sectionId);
+    }
+}
 
 // Set sections as active
 

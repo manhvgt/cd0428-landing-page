@@ -11,6 +11,10 @@
 
 /* ---- Base Rules ---- */
 body {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-areas: 
+    "navbar__menu" "main__body";
     background: rgb(136,203,171);
     background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
     margin: 0;
@@ -29,7 +33,7 @@ h1 {
 @media only screen and (min-width: 35em){
     h1 {
         font-size: 7em;
-        margin: 2em 4rem 1em;
+        margin: 2em min(12rem, 15%) 1em;
     }
 }
 
@@ -64,37 +68,94 @@ section {
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
+.navbar__menu {
+    height: auto;
+    min-width: 4em;
+    width: min(12em, 15%);
+    position: fixed;
+    z-index: 1;
+    top: 4em;
+    left: 0;
+    /* padding-left: 5px; */
+    background-color: transparent;
+    /* background-color: #23f008; */
+    overflow-x: hidden;
+    /* transition: 0.5s; */
+    transition: transform 0.3s ease, width 0.2s ease;
+}
+
+.navbar__menu.hidden {
+    transform: translateX(-100%);
+}
+
+@media only screen and (max-width: 35em){
+    .navbar__menu {
+        transform: translateX(-100%);
+    }
+
+    .navbar__menu.visible {
+        transform: translateX(0);
+        width: 100%;
+        height: 100%;
+        background-color: #ffffff;
+        padding-left: 15px;
+    }
+}
+
 .navbar__menu ul {
     padding-left: 0;
     margin: 0;
-    text-align: right;
+    text-align: left;
 }
 
 .navbar__menu li {
-    display: inline-block;
+    display: block;
+    /* margin: 5px 5px; */
 }
 
 .navbar__menu .menu__link {
     display: block;
-    padding: 1em;
-    font-weight: bold;
+    padding: 0.5em;
+    /* font-weight: bold; */
     text-decoration: none;
-    color: #000;
+    color: #000000;
 }
 
 .navbar__menu .menu__link:hover {
     background: #333;
-    color: #fff;
+    color: #0011ff;
     transition: ease 0.3s all;
+    cursor: pointer;
 }
 
 /* Header Styles */
 .page__header {
-    background: #fff;
-    position: fixed;
+    background: transparent;
+    position: sticky;
     top: 0;
     width: 100%;
     z-index: 5;
+}
+
+.page__header button {
+    color: #ffffff;
+    border: none;
+    background-color: transparent;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+@media only screen and (min-width: 35em){
+    .page__header button {
+        font-size: xx-large;
+    }
+}
+
+.page__header button:hover {
+    background-color: #23f008;
+    border-radius: 5px;
 }
 
 /* Footer Styles */
@@ -119,7 +180,7 @@ section {
 @media only screen and (min-width: 35em){
     .landing__container {
         max-width: 50em;
-        padding: 4em;
+        padding: min(12em, 15%);
     }
 }
 
